@@ -9,6 +9,9 @@ const Home = mongoose.model('Home');
 require('./models/contato');
 const Contato = mongoose.model('Contato');
 
+require('./models/empresa');
+const Empresa = mongoose.model('Empresa');
+
 /**
  * Força a utilizar o JSON
  */
@@ -122,6 +125,35 @@ app.post('/contato', async (requisicao, resposta) => {
     });
 });
 
+app.post('/empresa', async (requisicao, resposta) => {
+    await Empresa.create(requisicao.body, (erro) => {
+        if (erro) {
+            return resposta.status(400).json({
+                error: true,
+                mensagem: "Erro: Empresa não cadastrada!"
+            });
+        }
+    });
+
+    return resposta.json({
+        error: false,
+        mensagem: "Empresa cadastrada com sucesso!"
+    });
+});
+
+app.get('/empresa', async (requisicao, resposta) => {
+    Empresa.findOne({}).then((empresa) => {
+        return resposta.json({
+            error: false,
+            empresa
+        });
+    }).catch((erro) => {
+        return resposta.status(400).json({
+            error: true,
+            mensagem: "Nenhuma empresa encontrada!"
+        });
+    });
+});
 
 /**
  * Inicia o servidor
