@@ -9,8 +9,8 @@ const Home = mongoose.model('Home');
 require('./models/contato');
 const Contato = mongoose.model('Contato');
 
-require('./models/empresa');
-const Empresa = mongoose.model('Empresa');
+require('./models/ong');
+const Ong = mongoose.model('Ong');
 
 /**
  * Força a utilizar o JSON
@@ -68,8 +68,8 @@ app.get('/home', async (requisicao, resposta) => {
 app.post('/', async (requisicao, resposta) => {
 
     const dados = {
-        "topTitulo": "Temos a solução que a sua empresa precisa!",
-        "topSubtitulo": "Substítulo simples",
+        "topTitulo": "Temos a solução que a sua ong precisa!",
+        "topSubtitulo": "Contrate o melhor sistema de doação para sua ONG",
         "topTextoBtn": "ENTRE EM CONTATO",
         "topLinkBtn": "http://localhost:3000/",
         "serTitulo": "Serviços",
@@ -125,32 +125,32 @@ app.post('/contato', async (requisicao, resposta) => {
     });
 });
 
-app.post('/empresa', async (requisicao, resposta) => {
-    await Empresa.create(requisicao.body, (erro) => {
+app.post('/ong', async (requisicao, resposta) => {
+    await Ong.create(requisicao.body, (erro) => {
         if (erro) {
             return resposta.status(400).json({
                 error: true,
-                mensagem: "Erro: Empresa não cadastrada!"
+                mensagem: "Erro: ONG não cadastrada!"
             });
         }
     });
 
     return resposta.json({
         error: false,
-        mensagem: "Empresa cadastrada com sucesso!"
+        mensagem: "Ong cadastrada com sucesso!"
     });
 });
 
-app.get('/empresa', async (requisicao, resposta) => {
-    Empresa.findOne({}).then((empresa) => {
+app.get('/ong', async (requisicao, resposta) => {
+    Ong.findOne({}).then((ong) => {
         return resposta.json({
             error: false,
-            empresa
+            ong
         });
     }).catch((erro) => {
         return resposta.status(400).json({
             error: true,
-            mensagem: "Nenhuma empresa encontrada!"
+            mensagem: "Nenhuma ong encontrada!"
         });
     });
 });

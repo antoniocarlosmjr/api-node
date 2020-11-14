@@ -2,21 +2,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 /**
- * Criação da schema empresa com as colunas
- * name, email, cnpj
+ * Criação da schema ong com as colunas
+ * name, email, endereco
  */
-const empresa = new Schema({
+const ong = new Schema({
     name: {
         type: String
     },
     email: {
         type: String
     },
-    cnpj: {
+    endereco: {
         type: String
     },
 },{
     timestamps: true,
 });
 
-mongoose.model('Empresa', empresa);
+mongoose.model('Ong', ong);

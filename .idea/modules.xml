@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/api-node.iml" filepath="$PROJECT_DIR$/.idea/api-node.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../site-react/.idea/site-react.iml" filepath="$PROJECT_DIR$/../site-react/.idea/site-react.iml" />
     </modules>
   </component>
 </project>
