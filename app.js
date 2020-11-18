@@ -68,21 +68,21 @@ app.get('/home', async (requisicao, resposta) => {
 app.post('/', async (requisicao, resposta) => {
 
     const dados = {
-        "topTitulo": "Temos a solução que a sua ong precisa!",
+        "topTitulo": "Temos a solução que a sua ONG precisa!",
         "topSubtitulo": "Contrate o melhor sistema de doação para sua ONG",
         "topTextoBtn": "ENTRE EM CONTATO",
         "topLinkBtn": "http://localhost:3000/",
-        "serTitulo": "Serviços",
-        "serSubtitulo": "Featured content or information",
-        "serUmIcone": "code",
-        "serUmTitulo": "Serviço 1",
-        "serUmDesc": "Serviço de carrego",
-        "serDoisIcone": "laptop-code",
-        "serDoisTitulo": "Serviço 2",
-        "serDoisDesc": "Serviço de programação.",
-        "serTresIcone": "mobile-alt",
-        "serTresTitulo": "Serviço 3",
-        "serTresDesc": "Sem descrição",
+        "serTitulo": "Tipos de doações",
+        "serSubtitulo": "Possuímos as principais formas de doação",
+        "serUmIcone": "tshirt",
+        "serUmTitulo": "Roupas",
+        "serUmDesc": "Doação de roupas novas ou usadas.",
+        "serDoisIcone": "utensils",
+        "serDoisTitulo": "Alimentos",
+        "serDoisDesc": "Doação de alimentos perecíveis.",
+        "serTresIcone": "dollar-sign",
+        "serTresTitulo": "Dinheiro",
+        "serTresDesc": "Doação de dinheiro via espécie ou depósito",
     }
 
     const homeExiste = await Home.findOne({});
@@ -110,6 +110,15 @@ app.post('/', async (requisicao, resposta) => {
 });
 
 app.post('/contato', async (requisicao, resposta) => {
+
+    await sleep(3000);
+
+    function sleep(tempoMilisegundos){
+        return new Promise((resolve) => {
+            setTimeout(resolve, tempoMilisegundos);
+        });
+    }
+
     await Contato.create(requisicao.body, (erro) => {
         if (erro) {
             return resposta.status(400).json({
